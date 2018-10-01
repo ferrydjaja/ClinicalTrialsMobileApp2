@@ -11,8 +11,7 @@
                     </HBox>
                     <HBox alignItems="Center" direction="Row" fitContainer="false" width="auto" height="auto" justifyContent="Start" renderType="Div" visible="true" displayInline="false">
                         <items>
-                            <Label text="Email:" design="Bold" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true" />
-                            <Link href="mailto:{i18n>EMAIL_INFO}" text="erp@pfizer.com" textAlign="Begin" width="auto" target="_blank" wrapping="false" enabled="true" visible="true" emphasized="false" subtle="false" />
+                            <Label text="{i18n>appDescription1}" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true" />
                         </items>
                         <layoutData />
                     </HBox>
