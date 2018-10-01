@@ -1,0 +1,94 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:form="sap.ui.layout.form" xmlns:vbm="sap.ui.vbm" xmlns:vk="sap.ui.vk" xmlns:l="sap.ui.layout" controllerName="ClinicalTrials.ClinicalTrials.controller.Detail"
+	xmlns:html="http://www.w3.org/1999/xhtml">
+    <Page title="{nct_id} - {brief_title}" showNavButton="true" navButtonPress="doNavBack">
+        <ObjectHeader title="ABOUT THIS STUDY - {nct_id}">
+            <attributes>
+                <ObjectAttribute text="{brief_title}" />
+                <ObjectAttribute text="{official_title}" />
+            </attributes>
+        </ObjectHeader>
+        <vbm:GeoMap id="vbi" width="100%" height="40%" centerPosition="{position}" zoomlevel="3">
+            <vbm:vos>
+                <vbm:Spots items="{/modelData1/0/Spots}">
+                    <vbm:items>
+                        <vbm:Spot position="{pos}" tooltip="{tooltip}" type="Success" select="{select}" selectColor="RHLSA(0;1.0;3.0;1.0)"></vbm:Spot>
+                    </vbm:items>
+                </vbm:Spots>
+            </vbm:vos>
+        </vbm:GeoMap>
+        <IconTabBar expanded="{device&gt;/isNoPhone}">
+            <items>
+                <IconTabFilter icon="sap-icon://detail-view" text="Info"> 
+                    <form:SimpleForm id="UserForm0" minWidth="1024">
+                        <core:Title text="Details Information" />
+                        <Label text="Country" />
+                        <Text text="{country}" />
+                        <Label text="Summary" />
+                        <Text text="{detailed_description}" />
+                        <Label text="Last Update" />
+                        <Text text="{last_update_submitted}" />
+                        <Label text="Contact" />
+                        <Text text="{last_name}" />
+                        <Label text="Phone" />
+                        <Text text="{phone}" />
+                        <Label text="Email" />
+                        <Text text="{email}" />
+                    </form:SimpleForm>
+                </IconTabFilter>
+                <IconTabSeparator icon="" iconDensityAware="false"/>
+                 <IconTabFilter icon="sap-icon://activity-items" text="Eligibility">
+                    <form:SimpleForm id="UserForm1" minWidth="1024">
+                        <core:Title text="Eligibility Criteria" />
+                        <Label text="Inclusion Criteria" />
+                        <Text text="{inclusioncriteria}" />
+                        <Label text="Exclusion Criteria" />
+                        <Text text="{exclusioncriteria}" />
+                        <Label text="Gender" />
+                        <Text text="{eligibility/gender}" />
+                        <Label text="Minimum Age" />
+                        <Text text="{eligibility/minimum_age}" />
+                        <Label text="Maximum Age" />
+                        <Text text="{eligibility/maximum_age}" />
+                        <Label text="Healthy Volunteers" />
+                        <Text text="{eligibility/healthy_volunteers}" />
+                    </form:SimpleForm>
+                </IconTabFilter>
+                <IconTabSeparator icon="" iconDensityAware="false"/>
+                <IconTabFilter icon="sap-icon://activity-items" text="Location">
+                     <content>
+                           <List id="polocation" width="100%" headerText="Header" footerText="" backgroundDesign="Solid" showSeparators="All" growing="true" growingThreshold="10" inset="false" growingTriggerText="" showNoData="true" growingScrollToLoad="false" visible="true" items="{/modelData1/0/location}">
+                                <infoToolbar>
+                                    <Toolbar width="100%" height="auto" design="Auto" visible="false" enabled="true">
+                                        <content>
+                                            <Label text="Label" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                        </content>
+                                    </Toolbar>
+                                </infoToolbar>
+                                <headerToolbar>
+                                    <Toolbar enabled="true" visible="true" width="" design="Solid">
+                                        <content>
+                                            <SearchField placeholder="Search" tooltip="Search for location..." liveChange="SearchLocation" search="SearchLocation" showSearchButton="true" visible="true" width="100%"/>
+                                        </content>
+                                    </Toolbar>
+                                </headerToolbar>
+                                <items>
+                                     <ObjectListItem intro="{contact/email}" title="{facility/name}" type="InActive" selected="true" showMarkers="false" press="">
+                                        <attributes>
+                                            <ObjectAttribute text="{facility/address/city} {facility/address/state} {facility/address/zip}" active="false" visible="true"/>
+                                            <ObjectAttribute text="{facility/address/country}" active="false" visible="true"/>
+                                        </attributes>
+                                        <firstStatus>
+                                            <ObjectStatus text="{status}" state="None" visible="true"/>
+                                        </firstStatus>
+                                        <secondStatus>
+                                            <ObjectStatus text="{contact/last_name}" state="None" visible="true"/>
+                                        </secondStatus>
+                                    </ObjectListItem>
+                                </items>
+                            </List>
+                        </content>
+                </IconTabFilter>
+            </items>
+        </IconTabBar>
+    </Page>
+</mvc:View>
